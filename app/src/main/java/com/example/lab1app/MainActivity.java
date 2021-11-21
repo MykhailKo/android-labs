@@ -8,8 +8,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Button;
 
-import org.w3c.dom.Text;
-
 public class MainActivity extends AppCompatActivity {
 
     private TextView resultsTextView;
@@ -19,25 +17,32 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.fragment_input_container, InputFragment.class, null)
+                    .commit();
+        }
         setContentView(R.layout.activity_main);
 
-        resultsTextView = findViewById(R.id.resultsBox);
-        companiesGroup = findViewById(R.id.radioGroupCompanies);
-        productsGroup = findViewById(R.id.radioGroupProducts);
 
-        RadioButton rbCompany1 = (RadioButton)findViewById(R.id.radioButtonCompany1);
-        RadioButton rbCompany2 = (RadioButton)findViewById(R.id.radioButtonCompany2);
-        RadioButton rbCompany3 = (RadioButton)findViewById(R.id.radioButtonCompany3);
-        RadioButton rbProduct1 = (RadioButton)findViewById(R.id.radioButtonProduct1);
-        RadioButton rbProduct2 = (RadioButton)findViewById(R.id.radioButtonProduct2);
-        RadioButton rbProduct3 = (RadioButton)findViewById(R.id.radioButtonProduct3);
-        RadioButton rbProduct4 = (RadioButton)findViewById(R.id.radioButtonProduct4);
-
-        Button buttonOk = (Button)findViewById(R.id.buttonOk);
-        Button buttonCancel = (Button)findViewById(R.id.buttonCancel);
-
-        buttonCancel.setOnClickListener(cancelOnClick);
-        buttonOk.setOnClickListener(confirmOnClick);
+//        resultsTextView = findViewById(R.id.resultsBox);
+//        companiesGroup = findViewById(R.id.radioGroupCompanies);
+//        productsGroup = findViewById(R.id.radioGroupProducts);
+//
+//        RadioButton rbCompany1 = (RadioButton)findViewById(R.id.radioButtonCompany1);
+//        RadioButton rbCompany2 = (RadioButton)findViewById(R.id.radioButtonCompany2);
+//        RadioButton rbCompany3 = (RadioButton)findViewById(R.id.radioButtonCompany3);
+//        RadioButton rbProduct1 = (RadioButton)findViewById(R.id.radioButtonProduct1);
+//        RadioButton rbProduct2 = (RadioButton)findViewById(R.id.radioButtonProduct2);
+//        RadioButton rbProduct3 = (RadioButton)findViewById(R.id.radioButtonProduct3);
+//        RadioButton rbProduct4 = (RadioButton)findViewById(R.id.radioButtonProduct4);
+//
+//        Button buttonOk = (Button)findViewById(R.id.buttonOk);
+//        Button buttonCancel = (Button)findViewById(R.id.buttonCancel);
+//
+//        buttonCancel.setOnClickListener(cancelOnClick);
+//        buttonOk.setOnClickListener(confirmOnClick);
     }
 
     View.OnClickListener cancelOnClick = new View.OnClickListener() {
