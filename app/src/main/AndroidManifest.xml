@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab1App">
         <activity
+            android:name=".DataLogActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -18,10 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="author"
-            android:value="Mylhailo Kosiuk">
-        </meta-data>
+            android:value="Mylhailo Kosiuk"></meta-data>
     </application>
 
 </manifest>
