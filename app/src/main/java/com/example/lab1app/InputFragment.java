@@ -1,13 +1,22 @@
 package com.example.lab1app;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Date;
 
 public class InputFragment extends Fragment {
 
@@ -29,6 +38,17 @@ public class InputFragment extends Fragment {
         Button buttonOk = getView().findViewById(R.id.buttonOk);
 
         buttonOk.setOnClickListener(confirmOnClick);
+    }
+
+    private void writeToFile(String content) {
+        String filename = "user-action.log";
+        Context context = getContext();
+        Date now = new Date();
+        try (FileOutputStream fos = context.openFileOutput(filename, Context.MODE_APPEND)) {
+            fos.write((now.toString() + ":" + content).getBytes());
+        } catch (IOException e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     View.OnClickListener confirmOnClick = new View.OnClickListener() {
@@ -54,6 +74,9 @@ public class InputFragment extends Fragment {
                 .setReorderingAllowed(true)
                 .replace(R.id.fragment_output_container, OutputFragment.class, outputCtx)
                 .commit();
+
+            writeToFile(resultText.toString() + ",\n");
+            
         }
     };
 }
