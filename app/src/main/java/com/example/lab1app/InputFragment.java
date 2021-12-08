@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,6 +23,7 @@ public class InputFragment extends Fragment {
 
     private RadioGroup companiesGroup;
     private RadioGroup productsGroup;
+    private UserActionLogDao actionDao;
 
     public InputFragment() {
         super(R.layout.fragment_input);
@@ -29,6 +31,12 @@ public class InputFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInsatanceState) {
+        Context appCtx = getContext().getApplicationContext();
+        AppDataBase db = Room.databaseBuilder(appCtx,
+                AppDataBase.class, "applogdb").allowMainThreadQueries().build();
+
+        actionDao = db.userActionDao();
+
         companiesGroup = getView().findViewById(R.id.radioGroupCompanies);
         productsGroup = getView().findViewById(R.id.radioGroupProducts);
 
@@ -76,7 +84,11 @@ public class InputFragment extends Fragment {
                 .commit();
 
             writeToFile(resultText.toString() + ",\n");
-            
+
+            UserActionEntity actionRow = new UserActionEntity();
+            actionRow.log = (String) resultText;
+            actionRow.log_date = new Date().toString();
+            actionDao.insertAll(actionRow);
         }
     };
 }
