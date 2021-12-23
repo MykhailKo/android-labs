@@ -1,21 +1,4 @@
 <resources>
-    <string name="app_name">lab1App</string>
-    <string name="companyTitles">Company</string>
-    <string name="productTitles">Products</string>
-    <string name="companyTitle1">Colin\'s</string>
-    <string name="companyTitle2">O\'stin</string>
-    <string name="companyTitle3">Reserved</string>
-    <string name="productTitle1">Jeans</string>
-    <string name="productTitle2">Trench coat</string>
-    <string name="productTitle3">Jumper</string>
-    <string name="productTitle4">Shirt</string>
-    <string name="buttonOk">OK</string>
-    <string name="buttonCancel">Cancel</string>
-    <string name="buttonBack">Back</string>
-    <string name="resultsLabel">You have chosen:</string>
-    <string name="resultsPlaceholder">Your results will be here...</string>
-    <string name="dataLogBtn">Show app data</string>
-    <string name="dataLogTitleDB">App Data in DB</string>
-    <string name="dataLogTitleFS">App Data in FS</string>
-    <string name="dataNotFound">Data not found</string>
+    <string name="app_name">lab4App</string>
+    <string name="url_input">Internet video url</string>
 </resources>
